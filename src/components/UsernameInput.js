@@ -7,6 +7,7 @@ const UsernameInput = ({ socket }) => {
     e.preventDefault();
     socket.emit("setUsername", name);
     setName("");
+    socket.emit("getUsername");
   };
 
   const errorListener = (userName) => {

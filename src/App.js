@@ -5,6 +5,7 @@ import MessageInput from "./components/MessageInput";
 import UsernameInput from "./components/UsernameInput";
 
 import "./App.css";
+import Username from "./components/Username";
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -19,11 +20,14 @@ function App() {
     <div className="App">
       <header className="app-header">React Chat</header>
       {socket ? (
-        <div className="chat-container">
-          <Messages socket={socket} />
-          <MessageInput socket={socket} />
-          <UsernameInput socket={socket} />
-        </div>
+        <>
+          <Username socket={socket} />
+          <div className="chat-container">
+            <Messages socket={socket} />
+            <MessageInput socket={socket} />
+            <UsernameInput socket={socket} />
+          </div>
+        </>
       ) : (
         <div>Not Connected</div>
       )}

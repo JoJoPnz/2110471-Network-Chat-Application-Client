@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import Messages from "./components/Messages";
 import MessageInput from "./components/MessageInput";
+import UsernameInput from "./components/UsernameInput";
 
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
         <div className="chat-container">
           <Messages socket={socket} />
           <MessageInput socket={socket} />
+          <UsernameInput socket={socket} />
         </div>
       ) : (
         <div>Not Connected</div>

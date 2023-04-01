@@ -3,6 +3,7 @@ import "./MessageInput.css";
 
 const NewMessage = ({ socket }) => {
   const [value, setValue] = useState("");
+
   const submitForm = (e) => {
     e.preventDefault();
     socket.emit("message", value);
@@ -19,7 +20,9 @@ const NewMessage = ({ socket }) => {
           setValue(e.currentTarget.value);
         }}
       />
-      <button type="submit" className="send-button">send message</button>
+      <button type="submit" className="send-button">
+        send message
+      </button>
     </form>
   );
 };

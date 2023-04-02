@@ -13,6 +13,7 @@ const NewMessage = ({ socket }) => {
   return (
     <form onSubmit={submitForm}>
       <input
+        className="input-message"
         autoFocus
         value={value}
         placeholder="Type your message"

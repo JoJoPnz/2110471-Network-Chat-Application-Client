@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './UsernameInput.css';
 
 const UsernameInput = ({ socket }) => {
   const [name, setName] = useState("");
@@ -25,6 +26,7 @@ const UsernameInput = ({ socket }) => {
   return (
     <form onSubmit={submitForm}>
       <input
+        className="input-username"
         autoFocus
         value={name}
         placeholder="Set your name"
@@ -32,8 +34,8 @@ const UsernameInput = ({ socket }) => {
           setName(e.currentTarget.value);
         }}
       />
-      <button type="submit" className="send-button">
-        set name
+      <button type="submit" className="send-button-username">
+        set
       </button>
     </form>
   );

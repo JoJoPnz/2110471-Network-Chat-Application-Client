@@ -22,10 +22,10 @@ function App() {
       {socket ? (
         <>
           <Username socket={socket} />
+          <UsernameInput socket={socket} />
           <div className="chat-container">
             <Messages socket={socket} />
             <MessageInput socket={socket} />
-            <UsernameInput socket={socket} />
           </div>
         </>
       ) : (

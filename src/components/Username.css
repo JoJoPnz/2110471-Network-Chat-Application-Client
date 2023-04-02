@@ -1,0 +1,22 @@
+.username-container{
+    background-color: black;
+    border: 2px solid white;
+    width: 200px;
+    height: 80px;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+}    
+
+.name-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    line-height: 80px;
+    color: white;
+}

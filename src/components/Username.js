@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './Username.css';
 
 const Username = ({ socket }) => {
   const [name, setName] = useState("");
@@ -17,7 +18,11 @@ const Username = ({ socket }) => {
     };
   }, [socket]);
 
-  return <p>{name}</p>;
+  return (
+    <div className="username-container">
+      <div className="name-text">{name}</div>
+    </div>
+  );
 };
 
 export default Username;

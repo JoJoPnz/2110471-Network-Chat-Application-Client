@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
-import './UsernameInput.css';
+import "./UsernameInput.css";
 
 const UsernameInput = ({ socket }) => {
-  const [name, setName] = useState("");
+  const [usernameInput, setUsernameInput] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
-    socket.emit("setUsername", name);
-    setName("");
-    socket.emit("getUsername");
+    socket.emit("setUsername", usernameInput);
+    setUsernameInput("");
   };
 
-  const errorListener = (userName) => {
-    alert(userName + "ERRRRORORRORRORO");
+  const errorListener = (username) => {
+    alert(username + "ERRRRORORRORRORO");
   };
 
   useEffect(() => {
-    socket.on("errorDuplicateName", errorListener);
+    socket.on("errorDuplicateUsername", errorListener);
 
     return () => {
-      socket.off("errorDuplicateName", errorListener);
+      socket.off("errorDuplicateUsername", errorListener);
     };
   }, [socket]);
 
@@ -28,10 +27,10 @@ const UsernameInput = ({ socket }) => {
       <input
         className="input-username"
         autoFocus
-        value={name}
-        placeholder="Set your name"
+        value={usernameInput}
+        placeholder="Set your username"
         onChange={(e) => {
-          setName(e.currentTarget.value);
+          setUsernameInput(e.currentTarget.value);
         }}
       />
       <button type="submit" className="send-button-username">

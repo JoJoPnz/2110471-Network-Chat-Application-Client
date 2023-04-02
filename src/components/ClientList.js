@@ -20,8 +20,12 @@ const ClientList = ({ socket }) => {
   return (
     <>
       <div>Client List</div>
-      {clientList.map((e) => (
-        <div>{e}</div>
+      {clientList.map((e, index) => (
+        <div>
+          {index + 1}
+          <div>{e.id ? e.id : ""}</div>
+          <div>{e.username ? e.username : ""}</div>
+        </div>
       ))}
     </>
   );

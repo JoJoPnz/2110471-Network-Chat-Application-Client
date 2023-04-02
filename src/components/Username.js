@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import './Username.css';
+import "./Username.css";
 
 const Username = ({ socket }) => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
 
-  const getUsernameListener = (newFetchName) => {
-    setName(newFetchName);
+  const getUsernameListener = (newFetchUsername) => {
+    setUsername(newFetchUsername);
   };
 
   socket.emit("getUsername");
@@ -20,7 +20,7 @@ const Username = ({ socket }) => {
 
   return (
     <div className="username-container">
-      <div className="name-text">{name}</div>
+      <div className="name-text">{username}</div>
     </div>
   );
 };

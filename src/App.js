@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-import Messages from "./components/Messages";
-import MessageInput from "./components/MessageInput";
-import UsernameInput from "./components/UsernameInput";
+import Messages from "./components/Messages/Messages";
+import MessageInput from "./components/MessageInput/MessageInput";
+import UsernameInput from "./components/UsernameInput/UsernameInput";
 
 import "./App.css";
-import Username from "./components/Username";
-import ClientList from "./components/ClientList";
+import Username from "./components/Username/Username";
+import ClientList from "./components/ClientList/ClientList";
 
 function App() {
   const [socket, setSocket] = useState(null);

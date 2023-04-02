@@ -6,6 +6,7 @@ import UsernameInput from "./components/UsernameInput";
 
 import "./App.css";
 import Username from "./components/Username";
+import ClientList from "./components/ClientList";
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -23,6 +24,7 @@ function App() {
         <>
           <Username socket={socket} />
           <UsernameInput socket={socket} />
+          <ClientList socket={socket} />
           <div className="chat-container">
             <Messages socket={socket} />
             <MessageInput socket={socket} />

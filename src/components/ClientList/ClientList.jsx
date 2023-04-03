@@ -9,8 +9,6 @@ const ClientList = ({ socket }) => {
     setClientList(users);
   };
 
-  socket.emit("getAllClient");
-
   useEffect(() => {
     socket.on("getAllClient", getAllClientListener);
 
@@ -32,7 +30,7 @@ const ClientList = ({ socket }) => {
           <span className="user-count">{countAllOnlineUser(clientList)}</span>
         </div>
         {clientList.map((e, index) => (
-          <div>
+          <div key={index}>
             <div className="clientlist-row">
               <VscCircleFilled className="icon-circle" />
               <div className="clientlist-username">

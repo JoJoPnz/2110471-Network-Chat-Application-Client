@@ -6,12 +6,16 @@ const UsernameInput = ({ socket }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    socket.emit("setUsername", usernameInput);
-    setUsernameInput("");
+    if (!usernameInput) {
+      alert("Username can't be empty string");
+    } else {
+      socket.emit("setUsername", usernameInput);
+      setUsernameInput("");
+    }
   };
 
   const errorListener = (username) => {
-    alert(username + "ERRRRORORRORRORO");
+    alert(`Username ${username} is already taken`);
   };
 
   useEffect(() => {
@@ -20,7 +24,7 @@ const UsernameInput = ({ socket }) => {
     return () => {
       socket.off("errorDuplicateUsername", errorListener);
     };
-  }, [socket]);
+  }, []);
 
   return (
     <form onSubmit={submitForm}>

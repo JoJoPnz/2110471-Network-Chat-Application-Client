@@ -5,10 +5,9 @@ const Username = ({ socket }) => {
   const [username, setUsername] = useState("");
 
   const getUsernameListener = (newFetchUsername) => {
+    console.log("handleGetUsername");
     setUsername(newFetchUsername);
   };
-
-  socket.emit("getUsername");
 
   useEffect(() => {
     socket.on("getUsername", getUsernameListener);
@@ -16,7 +15,7 @@ const Username = ({ socket }) => {
     return () => {
       socket.off("getUsername", getUsernameListener);
     };
-  }, [socket]);
+  }, []);
 
   return (
     <div className="username-container">

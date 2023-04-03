@@ -15,7 +15,7 @@ const ClientList = ({ socket }) => {
     return () => {
       socket.off("getAllClient", getAllClientListener);
     };
-  }, [socket]);
+  }, []);
 
   const countAllOnlineUser = (clientList) => {
     return clientList.length;

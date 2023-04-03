@@ -6,6 +6,7 @@ const ClientList = ({ socket }) => {
   const [clientList, setClientList] = useState([]);
 
   const getAllClientListener = (users) => {
+    console.log(users);
     setClientList(users);
   };
 
@@ -32,7 +33,11 @@ const ClientList = ({ socket }) => {
         {clientList.map((e, index) => (
           <div key={index}>
             <div className="clientlist-row">
-              <VscCircleFilled className="icon-circle" />
+              <VscCircleFilled
+                className={
+                  e.status === "online" ? "icon-online" : "icon-offline"
+                }
+              />
               <div className="clientlist-username">
                 {e.username
                   ? e.username + (e.id === socket.id ? " (me)" : "")

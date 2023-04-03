@@ -47,8 +47,14 @@
     background: #4F95DA;
 }
 
-.icon-circle{
+.icon-online{
     color: green;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.icon-offline{
+    color: gray;
     margin-top: 5px;
     margin-right: 5px;
 }

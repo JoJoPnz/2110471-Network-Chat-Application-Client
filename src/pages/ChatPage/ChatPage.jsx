@@ -5,6 +5,7 @@ import UsernameInput from "../../components/UsernameInput/UsernameInput";
 import ClientList from "../../components/ClientList/ClientList";
 import { useTokenContext } from "../../context/TokenContext";
 import { useNavigate } from "react-router";
+import "./ChatPage.css";
 
 const ChatPage = () => {
   const [socket, setSocket] = useState(null);
@@ -14,6 +15,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     const newSocket = io(`http://${window.location.hostname}:3000`);
+    socket?.emit("setUserOnline", token);
     setSocket(newSocket);
 
     return () => newSocket.close();
@@ -22,15 +24,18 @@ const ChatPage = () => {
   return (
     <>
       {socket ? (
-        <>
-          <Username socket={socket} />
-          <UsernameInput socket={socket} />
-          <ClientList socket={socket} />
+        <div className="chat-page-container">
+          <div>
+            <Username socket={socket} />
+            <UsernameInput socket={socket} />
+            <ClientList socket={socket} />
+          </div>
+          <div>dddd</div>
           {/* <div className="chat-container">
             <Messages socket={socket} />
             <MessageInput socket={socket} />
           </div> */}
-        </>
+        </div>
       ) : (
         <div>Not Connected</div>
       )}

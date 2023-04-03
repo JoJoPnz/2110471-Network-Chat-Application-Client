@@ -1,0 +1,66 @@
+.clientlist-container{
+    /* background-color: antiquewhite; */
+    width: 300px;
+    display: flex;
+    flex-direction: column;  
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.clientlist-title{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgb(75, 190, 75);
+}
+
+.clientlist-row {
+    display: flex;
+    align-items: center;
+}
+
+.clientlist-username {
+    flex: 1;
+    margin-top: 5px;
+}
+
+.chat-button {
+    margin-top: 5px;
+    width: 80px;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 10px;
+
+    font-size: 14px;
+    background-color: rgb(191, 191, 191);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.chat-button:hover{
+    transition: 1s ease-in-out;
+    background: #4F95DA;
+}
+
+.icon-circle{
+    color: green;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+/* .totaluser-text{
+    display: flex;
+    align-self: flex-end;
+    margin-right: 20px;
+} */
+
+.user-count{
+    color: blue;
+    font-weight: bold;
+    margin-left: 10px;
+}

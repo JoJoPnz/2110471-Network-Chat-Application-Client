@@ -30,11 +30,10 @@ const ChatPage = () => {
             <UsernameInput socket={socket} />
             <ClientList socket={socket} />
           </div>
-          <div>dddd</div>
-          {/* <div className="chat-container">
-            <Messages socket={socket} />
-            <MessageInput socket={socket} />
-          </div> */}
+          <div className="chat-container">
+            {/* <Messages socket={socket} /> */}
+            {/* <MessageInput socket={socket} /> */}
+          </div>
         </div>
       ) : (
         <div>Not Connected</div>

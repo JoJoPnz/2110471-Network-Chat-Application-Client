@@ -23,6 +23,9 @@ const LoginPage = () => {
         setToken(token);
         setIsLogin(true);
         navigate("/chat");
+      })
+      .catch((err) => {
+        alert("username or password is incorrect");
       });
   };
 
@@ -31,11 +34,14 @@ const LoginPage = () => {
       <h1 className="signin-text"> Log In </h1>
       <br />
       <label className="label-text">Email</label>
-      <input
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="text-input">
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
 
       <label className="label-text">Password</label>
       <input

@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import { useTokenContext } from "../../context/TokenContext";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -52,6 +53,13 @@ const LoginPage = () => {
       <div className="login-button">
         <button>Login</button>
       </div>
+
+      <p className="text-signup">
+        Don’t have an account yet?{" "}
+        <NavLink to="/register" className="signup-button">
+          Sign Up
+        </NavLink>
+      </p>
     </form>
   );
 };

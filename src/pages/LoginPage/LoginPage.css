@@ -62,3 +62,8 @@ input[type="password"] {
 .text-input{
     justify-items: center;
 }
+
+.text-signup {
+    color: #565656;
+    font-size: 20px;
+}

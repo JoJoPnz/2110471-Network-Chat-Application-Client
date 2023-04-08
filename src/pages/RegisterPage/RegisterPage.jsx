@@ -4,13 +4,13 @@ import "./RegisterPage.css";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+//   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+//   const handleUsernameChange = (e) => {
+//     setUsername(e.target.value);
+//   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -33,7 +33,7 @@ const RegisterPage = () => {
     <div className="register-page">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -44,7 +44,7 @@ const RegisterPage = () => {
             onChange={handleUsernameChange}
             required
           />
-        </div>
+        </div> */}
 
         <div className="form-group">
           <label htmlFor="email">Email address</label>

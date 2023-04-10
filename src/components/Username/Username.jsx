@@ -5,7 +5,6 @@ const Username = ({ socket }) => {
   const [username, setUsername] = useState("");
 
   const getUsernameListener = (newFetchUsername) => {
-    console.log("handleGetUsername");
     setUsername(newFetchUsername);
   };
 

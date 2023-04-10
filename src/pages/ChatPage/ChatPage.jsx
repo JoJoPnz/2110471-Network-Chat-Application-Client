@@ -6,6 +6,7 @@ import ClientList from "../../components/ClientList/ClientList";
 import { useTokenContext } from "../../context/TokenContext";
 import { useNavigate } from "react-router";
 import "./ChatPage.css";
+import GroupInput from "../../components/GroupInput/GroupInput";
 
 const ChatPage = () => {
   const [socket, setSocket] = useState(null);
@@ -29,6 +30,7 @@ const ChatPage = () => {
             <Username socket={socket} />
             <UsernameInput socket={socket} />
             <ClientList socket={socket} />
+            <GroupInput socket={socket} />
           </div>
           <div className="chat-container">
             {/* <Messages socket={socket} /> */}

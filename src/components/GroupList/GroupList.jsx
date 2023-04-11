@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import "./GroupList.css";
 import { getUserIdFromToken } from "../../utils/auth";
+import { useChatContext } from "../../context/ChatContext";
 
 const GroupList = ({ socket }) => {
   const [groupList, setGroupList] = useState([]);
   const currentUserId = getUserIdFromToken();
+  const { setIsChatting, setIsChatGroup, setGroupInfo } = useChatContext();
   const getAllGroupListener = (groups) => {
     setGroupList(groups);
+  };
+
+  const onClickHandle = (groupInfo) => {
+    setIsChatting(true);
+    setIsChatGroup(true);
+    setGroupInfo(groupInfo);
   };
 
   useEffect(() => {
@@ -28,7 +36,7 @@ const GroupList = ({ socket }) => {
           total group : <span>{countAllGroup(groupList)}</span>
         </div>
         {groupList.map((e, index) => (
-          <div key={index}>
+          <div key={e._id} onClick={() => onClickHandle(e)}>
             {e.name}
             {e.users}
           </div>

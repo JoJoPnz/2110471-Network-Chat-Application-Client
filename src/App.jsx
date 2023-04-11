@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+
         <Route element={<ProtectedRoutesAuth />}>
           <Route path="/chat" element={<ChatPage />} />
         </Route>

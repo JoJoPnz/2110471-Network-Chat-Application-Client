@@ -9,11 +9,14 @@ import GroupInput from "../../components/GroupInput/GroupInput";
 import ChatWindow from "../../components/ChatWindow/ChatWindow";
 import { storage } from "../../utils/storage";
 import GroupList from "../../components/GroupList/GroupList";
+import { useChatContext } from "../../context/ChatContext";
 
 const ChatPage = () => {
   const [socket, setSocket] = useState(null);
   const navigate = useNavigate();
   const token = storage.getAccessToken();
+  const { setIsChatting, setGroupInfo, setIsChatGroup } = useChatContext();
+
   socket?.on("error", (message) => {
     alert(message);
     navigate("/login");
@@ -25,7 +28,12 @@ const ChatPage = () => {
     socket?.emit("setUserOnline", token);
     setSocket(newSocket);
 
-    return () => newSocket.close();
+    return () => {
+      newSocket.close();
+      setIsChatting(false);
+      setGroupInfo({});
+      setIsChatGroup(false);
+    };
   }, [setSocket]);
 
   return (

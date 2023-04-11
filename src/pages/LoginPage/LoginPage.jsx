@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import { useTokenContext } from "../../context/TokenContext";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { storage } from "../../utils/storage";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [isError, setError] = useState(false);
   const navigate = useNavigate();
-  const { setToken, setIsLogin } = useTokenContext();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,8 +20,7 @@ const LoginPage = () => {
       })
       .then((res) => {
         const token = res.data.token;
-        setToken(token);
-        setIsLogin(true);
+        storage.setAccessToken(token);
         navigate("/chat");
       })
       .catch((err) => {
@@ -42,7 +40,6 @@ const LoginPage = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-
 
       <label className="label-text">Password</label>
       <input

@@ -1,20 +1,20 @@
-import React, { createContext, useContext, useState } from "react";
+// import React, { createContext, useContext, useState } from "react";
 
-const TokenContext = createContext();
+// const TokenContext = createContext();
 
-export function useTokenContext() {
-  return useContext(TokenContext);
-}
+// export function useTokenContext() {
+//   return useContext(TokenContext);
+// }
 
-const TokenProvider = ({ children }) => {
-  const [token, setToken] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+// const TokenProvider = ({ children }) => {
+//   const [token, setToken] = useState("");
+//   const [isLogin, setIsLogin] = useState(false);
 
-  return (
-    <TokenContext.Provider value={{ token, setToken, isLogin, setIsLogin }}>
-      {children}
-    </TokenContext.Provider>
-  );
-};
+//   return (
+//     <TokenContext.Provider value={{ token, setToken, isLogin, setIsLogin }}>
+//       {children}
+//     </TokenContext.Provider>
+//   );
+// };
 
-export default TokenProvider;
+// export default TokenProvider;

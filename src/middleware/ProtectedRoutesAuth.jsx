@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useTokenContext } from "../context/TokenContext";
+import { checkToken } from "../utils/auth";
 
 const ProtectedRoutesAuth = () => {
-  const { isLogin } = useTokenContext();
+  const isLogin = checkToken();
   return !isLogin ? <Navigate to="/login" /> : <Outlet />;
 };
 

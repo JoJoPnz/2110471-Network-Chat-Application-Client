@@ -3,15 +3,15 @@ import { io } from "socket.io-client";
 import Username from "../../components/Username/Username";
 import UsernameInput from "../../components/UsernameInput/UsernameInput";
 import ClientList from "../../components/ClientList/ClientList";
-import { useTokenContext } from "../../context/TokenContext";
 import { useNavigate } from "react-router";
 import "./ChatPage.css";
 import GroupInput from "../../components/GroupInput/GroupInput";
+import { storage } from "../../utils/storage";
 
 const ChatPage = () => {
   const [socket, setSocket] = useState(null);
   const navigate = useNavigate();
-  const { token } = useTokenContext();
+  const token = storage.getAccessToken();
   socket?.emit("setUserOnline", token);
 
   useEffect(() => {

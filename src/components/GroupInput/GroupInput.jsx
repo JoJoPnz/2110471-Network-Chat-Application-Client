@@ -9,7 +9,7 @@ const GroupInput = ({ socket }) => {
     if (!groupNameInput) {
       alert("Group name can't be empty string");
     } else {
-      // socket.emit("setUsername", groupNameInput);
+      socket.emit("createGroup", groupNameInput);
       setGroupNameInput("");
     }
   };
@@ -19,10 +19,10 @@ const GroupInput = ({ socket }) => {
   };
 
   useEffect(() => {
-    // socket.on("errorDuplicateUsername", errorListener);
+    socket.on("errorDuplicateGroupName", errorListener);
 
     return () => {
-      // socket.off("errorDuplicateUsername", errorListener);
+      socket.off("errorDuplicateGroupName", errorListener);
     };
   }, []);
 
@@ -38,7 +38,7 @@ const GroupInput = ({ socket }) => {
         }}
       />
       <button type="submit" className="send-button-groupName">
-        set
+        set group name
       </button>
     </form>
   );

@@ -16,3 +16,12 @@ export const checkToken = () => {
     return false;
   }
 };
+
+export const getUserIdFromToken = () => {
+  const token = storage.getAccessToken();
+  const decodedToken = jwtDecode(token ? token : "");
+  if (decodedToken && decodedToken.id) {
+    return decodedToken.id;
+  }
+  return null;
+};

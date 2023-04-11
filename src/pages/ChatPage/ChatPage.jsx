@@ -8,6 +8,7 @@ import "./ChatPage.css";
 import GroupInput from "../../components/GroupInput/GroupInput";
 import ChatWindow from "../../components/ChatWindow/ChatWindow";
 import { storage } from "../../utils/storage";
+import GroupList from "../../components/GroupList/GroupList";
 
 const ChatPage = () => {
   const [socket, setSocket] = useState(null);
@@ -36,6 +37,7 @@ const ChatPage = () => {
             <UsernameInput socket={socket} />
             <ClientList socket={socket} />
             <GroupInput socket={socket} />
+            <GroupList socket={socket} />
           </div>
           <div className="chat-container">
             <ChatWindow socket={socket} />

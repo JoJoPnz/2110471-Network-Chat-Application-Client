@@ -6,7 +6,6 @@ const ClientList = ({ socket }) => {
   const [clientList, setClientList] = useState([]);
 
   const getAllClientListener = (users) => {
-    console.log(users);
     setClientList(users);
   };
 

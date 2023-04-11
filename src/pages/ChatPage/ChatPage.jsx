@@ -6,12 +6,17 @@ import ClientList from "../../components/ClientList/ClientList";
 import { useNavigate } from "react-router";
 import "./ChatPage.css";
 import GroupInput from "../../components/GroupInput/GroupInput";
+import ChatWindow from "../../components/ChatWindow/ChatWindow";
 import { storage } from "../../utils/storage";
 
 const ChatPage = () => {
   const [socket, setSocket] = useState(null);
   const navigate = useNavigate();
   const token = storage.getAccessToken();
+  socket?.on("error", (message) => {
+    alert(message);
+    navigate("/login");
+  });
   socket?.emit("setUserOnline", token);
 
   useEffect(() => {
@@ -33,6 +38,7 @@ const ChatPage = () => {
             <GroupInput socket={socket} />
           </div>
           <div className="chat-container">
+            <ChatWindow socket={socket} />
             {/* <Messages socket={socket} /> */}
             {/* <MessageInput socket={socket} /> */}
           </div>

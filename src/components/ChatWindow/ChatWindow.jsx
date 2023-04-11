@@ -26,7 +26,7 @@ const ChatWindow = ({ socket }) => {
               <>
                 {/* <p>{message.senderId}</p> */}
                 <p>
-                  {message.senderId.username} : {message.text}
+                  {message.sender.username} : {message.text}
                 </p>
                 <p>==========================</p>
               </>

@@ -6,13 +6,19 @@
   font-family: "Poppins", sans-serif;
   margin-left: 20px;
   margin-top: 30px;
+  /* height: 200px;
+  overflow-x: scroll; */
 }
 
 .clientlist-title {
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
   background-color: rgb(75, 190, 75);
+  color: white;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .clientlist-row {
@@ -30,7 +36,7 @@
   width: 80px;
   font-family: "Poppins", sans-serif;
   margin-right: 10px;
-
+  border-radius: 4px;
   font-size: 14px;
   background-color: rgb(191, 191, 191);
   border: none;
@@ -73,4 +79,12 @@
   color: blue;
   font-weight: bold;
   margin-left: 10px;
+}
+
+.line-clientlist{
+  height: 3px;
+  background-color: gray;
+  border-radius: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

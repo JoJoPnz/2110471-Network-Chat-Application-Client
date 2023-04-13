@@ -1,0 +1,55 @@
+.group-list-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    margin-left: 20px;
+    margin-top: 30px;
+    /* overflow-x: scroll; */
+    /* overflow-x: auto; */
+}
+
+.group-list-header {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(75, 190, 75);
+    color: white;
+    height: 40px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.group-list-total {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.group-list-total span {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.group-list-item {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.group-list-item:hover {
+    background-color: #f2f2f2;
+}
+
+.group-list-item span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.user-count {
+    color: blue;
+    font-weight: bold;
+    margin-left: 10px;
+}

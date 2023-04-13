@@ -28,7 +28,7 @@ const ClientList = ({ socket }) => {
         <div className="totaluser-text">
           total user online :{" "}
           <span className="user-count">{countAllOnlineUser(clientList)}</span>
-        </div>
+        </div>  
         {clientList.map((e, index) => (
           <div key={index}>
             <div className="clientlist-row">
@@ -50,6 +50,7 @@ const ClientList = ({ socket }) => {
                 <></>
               )}
             </div>
+            <div className="line-clientlist"></div>
           </div>
         ))}
       </div>

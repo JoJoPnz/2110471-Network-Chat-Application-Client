@@ -28,29 +28,29 @@ const GroupList = ({ socket }) => {
     return groupList.length;
   };
 
-  return (
-    <>
-      <div>
-        <div>Group List</div>
-        <div>
-          total group : <span>{countAllGroup(groupList)}</span>
-        </div>
-        {groupList.map((e, index) => (
-          <div key={e._id} onClick={() => onClickHandle(e)}>
-            {e.name}
-            {e.users}
-          </div>
-        ))}
-
-        {/*----------------- Implement here -----------------*/}
-        {/* leave group if user already joined */}
-        {/* <button>leave group</button> */}
-        {/* join group if user has never been in group*/}
-        {/* <button>join group</button> */}
-        {/*----------------- Implement here -----------------*/}
-      </div>
-    </>
-  );
+return (
+  <div className="group-list-container">
+    <div className="group-list-header">Group List</div>
+    <div className="group-list-total">
+      total group : <span className="user-count">{countAllGroup(groupList)}</span>
+    </div>
+    {groupList.map((e, index) => (
+      <div
+        className="group-list-item"
+        key={e._id}
+        onClick={() => onClickHandle(e)}
+      >
+        <span>{e.name} :</span> {e.users} 
+      </div>        
+        // {/*----------------- Implement here -----------------*/ }
+        // {/* leave group if user already joined */}
+        // {/* <button>leave group</button> */}
+        // {/* join group if user has never been in group*/}
+        // {/* <button>join group</button> */}
+        // {/*----------------- Implement here -----------------*/}
+    ))}
+  </div>
+);
 };
 
 export default GroupList;

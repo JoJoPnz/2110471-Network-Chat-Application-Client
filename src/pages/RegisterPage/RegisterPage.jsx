@@ -8,7 +8,7 @@ const RegisterPage = () => {
   //   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [confirmPassword, setConfirmPassword] = useState("");
   //   const handleUsernameChange = (e) => {
   //     setUsername(e.target.value);
   //   };
@@ -21,12 +21,20 @@ const RegisterPage = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     // w8 for implement here #P JoJo
     // Here you can add your code to send a POST request to the server to register the user
     // with the provided username, email, and password
     // Once the user is registered, you can navigate to a different page using `navigate('/path')`
+
+    if (confirmPassword !== password ) {
+      alert("password and confirm password are not match");
+      return;
+    }
     await axios
       .post(`${process.env.REACT_APP_API_URL}/auth/register`, {
         email,
@@ -44,18 +52,6 @@ const RegisterPage = () => {
     <div className="register-page">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        {/* <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            placeholder="Enter username"
-            value={username}
-            onChange={handleUsernameChange}
-            required
-          />
-        </div> */}
 
         <div className="form-group">
           <label htmlFor="email">Email address</label>
@@ -76,9 +72,22 @@ const RegisterPage = () => {
             type="password"
             className="form-control"
             id="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             value={password}
             onChange={handlePasswordChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Confirm Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="Enter Confirm Password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
             required
           />
         </div>

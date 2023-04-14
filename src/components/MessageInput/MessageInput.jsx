@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import "./MessageInput.css";
 import { useChatContext } from "../../context/ChatContext";
 import axios from "axios";
-import { getUserIdFromToken } from "../../utils/auth";
 import { storage } from "../../utils/storage";
 
 const MessageInput = ({ socket, groupId }) => {
   const [messageInput, setMessageInput] = useState("");
   const { isChatGroup } = useChatContext();
-  const currentUserId = getUserIdFromToken();
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -19,12 +17,11 @@ const MessageInput = ({ socket, groupId }) => {
     // check dm or group message
     if (isChatGroup) {
       await axios
-        .patch(
-          `${process.env.REACT_APP_API_URL}/groups/${groupId}`,
+        .post(
+          `${process.env.REACT_APP_API_URL}/groups/message`,
           {
-            messages: [
-              { type: "User", sender: currentUserId, text: messageInput },
-            ],
+            groupId,
+            message: { type: "User", text: messageInput },
           },
           {
             headers: {
@@ -36,23 +33,15 @@ const MessageInput = ({ socket, groupId }) => {
           socket.emit("updateChatGroup", groupId);
         })
         .catch((err) => {
-          alert("error");
+          alert(err.response.data.message);
         });
     } else {
     }
     setMessageInput("");
   };
 
-  // const sendMessageListener = (username) => {
-  //   alert(`Username ${username} is already taken`);
-  // };
-
   useEffect(() => {
-    // socket.on("sendMessage", sendMessageListener);
-
-    return () => {
-      // socket.off("sendMessage", sendMessageListener);
-    };
+    return () => {};
   }, []);
 
   return (

@@ -12,7 +12,7 @@ const ChatWindow = ({ socket }) => {
         <div>{groupInfo.name}</div>
         {/* this is object -> must loop to display messages */}
         {groupInfo.messages.map((message) => {
-          console.log(message);
+          // console.log(message);
           if (message.type === "System") {
             // display as system -> grey font color
             return (

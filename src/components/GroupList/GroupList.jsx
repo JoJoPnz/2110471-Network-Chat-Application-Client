@@ -11,9 +11,14 @@ const GroupList = ({ socket }) => {
   const getAllGroupListener = (groups) => {
     if (groupInfo) {
       for (const group of groups) {
+
+        // bug here
         if (String(group.id) === String(groupInfo.id)) {
           setGroupInfo(group);
-          console.log("======");
+          // console.log(group);
+          // console.log("======");
+          // console.log(groupInfo);
+          // console.log("======");
           break;
         }
       }
@@ -21,11 +26,12 @@ const GroupList = ({ socket }) => {
     setGroupList(groups);
   };
 
-  const onClickHandle = (groupInfo) => {
-    if (groupInfo.users.includes(currentUserId)) {
+  const onClickHandle = (groupData) => {
+    if (groupData.users.includes(currentUserId)) {
       setIsChatting(true);
       setIsChatGroup(true);
-      setGroupInfo(groupInfo);
+      setGroupInfo(groupData);
+      console.log(groupData);
     } else {
       alert("Please join this group first before chatting");
     }

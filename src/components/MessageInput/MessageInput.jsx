@@ -1,31 +1,76 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./MessageInput.css";
+import { useChatContext } from "../../context/ChatContext";
+import axios from "axios";
+import { getUserIdFromToken } from "../../utils/auth";
+import { storage } from "../../utils/storage";
 
-const NewMessage = ({ socket }) => {
-  const [value, setValue] = useState("");
+const MessageInput = ({ socket, groupId }) => {
+  const [messageInput, setMessageInput] = useState("");
+  const { isChatGroup } = useChatContext();
+  const currentUserId = getUserIdFromToken();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    socket.emit("message", value);
-    setValue("");
+    if (!messageInput) {
+      alert("Message can't be empty string");
+      return;
+    }
+    // check dm or group message
+    if (isChatGroup) {
+      await axios
+        .patch(
+          `${process.env.REACT_APP_API_URL}/groups/${groupId}`,
+          {
+            messages: [
+              { type: "User", sender: currentUserId, text: messageInput },
+            ],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${storage.getAccessToken()}`,
+            },
+          }
+        )
+        .then((res) => {
+          socket.emit("updateChatGroup", groupId);
+        })
+        .catch((err) => {
+          alert("error");
+        });
+    } else {
+    }
+    setMessageInput("");
   };
+
+  // const sendMessageListener = (username) => {
+  //   alert(`Username ${username} is already taken`);
+  // };
+
+  useEffect(() => {
+    // socket.on("sendMessage", sendMessageListener);
+
+    return () => {
+      // socket.off("sendMessage", sendMessageListener);
+    };
+  }, []);
 
   return (
     <form onSubmit={submitForm}>
       <input
-        className="input-message"
+        className=""
         autoFocus
-        value={value}
-        placeholder="Type your message"
+        value={messageInput}
+        placeholder="type message"
         onChange={(e) => {
-          setValue(e.currentTarget.value);
+          setMessageInput(e.currentTarget.value);
         }}
       />
-      <button type="submit" className="send-button">
-        send message
+      <button type="submit" className="">
+        set
       </button>
     </form>
   );
 };
 
-export default NewMessage;
+export default MessageInput;

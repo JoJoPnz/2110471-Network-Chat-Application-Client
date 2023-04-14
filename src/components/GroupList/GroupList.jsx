@@ -6,8 +6,18 @@ import { useChatContext } from "../../context/ChatContext";
 const GroupList = ({ socket }) => {
   const [groupList, setGroupList] = useState([]);
   const currentUserId = getUserIdFromToken();
-  const { setIsChatting, setIsChatGroup, setGroupInfo } = useChatContext();
+  const { setIsChatting, setIsChatGroup, groupInfo, setGroupInfo } =
+    useChatContext();
   const getAllGroupListener = (groups) => {
+    if (groupInfo) {
+      for (const group of groups) {
+        if (String(group.id) === String(groupInfo.id)) {
+          setGroupInfo(group);
+          console.log("======");
+          break;
+        }
+      }
+    }
     setGroupList(groups);
   };
 
@@ -28,29 +38,30 @@ const GroupList = ({ socket }) => {
     return groupList.length;
   };
 
-return (
-  <div className="group-list-container">
-    <div className="group-list-header">Group List</div>
-    <div className="group-list-total">
-      total group : <span className="user-count">{countAllGroup(groupList)}</span>
-    </div>
-    {groupList.map((e, index) => (
-      <div
-        className="group-list-item"
-        key={e._id}
-        onClick={() => onClickHandle(e)}
-      >
-        <span>{e.name} :</span> {e.users} 
-      </div>        
+  return (
+    <div className="group-list-container">
+      <div className="group-list-header">Group List</div>
+      <div className="group-list-total">
+        total group :{" "}
+        <span className="user-count">{countAllGroup(groupList)}</span>
+      </div>
+      {groupList.map((e, index) => (
+        <div
+          className="group-list-item"
+          key={e._id}
+          onClick={() => onClickHandle(e)}
+        >
+          <span>{e.name} :</span> {e.users}
+        </div>
         // {/*----------------- Implement here -----------------*/ }
         // {/* leave group if user already joined */}
         // {/* <button>leave group</button> */}
         // {/* join group if user has never been in group*/}
         // {/* <button>join group</button> */}
         // {/*----------------- Implement here -----------------*/}
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
 };
 
 export default GroupList;

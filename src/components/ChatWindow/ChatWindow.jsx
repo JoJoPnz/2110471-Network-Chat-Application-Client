@@ -1,4 +1,5 @@
 import { useChatContext } from "../../context/ChatContext";
+import MessageInput from "../MessageInput/MessageInput";
 
 const ChatWindow = ({ socket }) => {
   const { isChatting, isChatGroup, groupInfo } = useChatContext();
@@ -33,6 +34,7 @@ const ChatWindow = ({ socket }) => {
             );
           }
         })}
+        <MessageInput socket={socket} groupId={groupInfo._id} />
       </>
     );
   // direct message

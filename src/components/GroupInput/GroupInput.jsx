@@ -1,29 +1,40 @@
 import { useEffect, useState } from "react";
 import "./GroupInput.css";
+import axios from "axios";
+import { storage } from "../../utils/storage";
 
 const GroupInput = ({ socket }) => {
   const [groupNameInput, setGroupNameInput] = useState("");
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     if (!groupNameInput) {
       alert("Group name can't be empty string");
     } else {
-      socket.emit("createGroup", groupNameInput);
+      await axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/groups`,
+          {
+            name: groupNameInput,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${storage.getAccessToken()}`,
+            },
+          }
+        )
+        .then((res) => {
+          socket.emit("createGroup");
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
       setGroupNameInput("");
     }
   };
 
-  const errorListener = (groupName) => {
-    alert(`Group name ${groupName} is already taken`);
-  };
-
   useEffect(() => {
-    socket.on("errorDuplicateGroupName", errorListener);
-
-    return () => {
-      socket.off("errorDuplicateGroupName", errorListener);
-    };
+    return () => {};
   }, []);
 
   return (

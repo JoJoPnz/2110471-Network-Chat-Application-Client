@@ -22,9 +22,13 @@ const GroupList = ({ socket }) => {
   };
 
   const onClickHandle = (groupInfo) => {
-    setIsChatting(true);
-    setIsChatGroup(true);
-    setGroupInfo(groupInfo);
+    if (groupInfo.users.includes(currentUserId)) {
+      setIsChatting(true);
+      setIsChatGroup(true);
+      setGroupInfo(groupInfo);
+    } else {
+      alert("Please join this group first before chatting");
+    }
   };
 
   useEffect(() => {

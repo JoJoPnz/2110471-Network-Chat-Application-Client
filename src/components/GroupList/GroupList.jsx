@@ -33,7 +33,7 @@ const GroupList = ({ socket }) => {
       alert("Please join this group first before chatting");
       return;
     }
-    
+
     await axios
       .get(`${process.env.REACT_APP_API_URL}/groups/${groupData._id}`, {
         headers: {
@@ -44,7 +44,6 @@ const GroupList = ({ socket }) => {
         setIsChatting(true);
         setIsChatGroup(true);
         const group = await res.data.data;
-        console.log(group);
         setGroupInfo(group);
 
         // socket.emit("updateChatGroup", groupId);

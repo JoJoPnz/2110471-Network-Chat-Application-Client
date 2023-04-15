@@ -8,7 +8,6 @@ const ChatWindow = ({ socket }) => {
   const { isChatting, isChatGroup, groupInfo, setGroupInfo } = useChatContext();
 
   const updateChatGroupListener = async (groupId) => {
-    console.log("GROUP INFO", groupInfo);
     if (!isChatting || !isChatGroup || groupInfo._id !== groupId) {
       return;
     }
@@ -19,8 +18,6 @@ const ChatWindow = ({ socket }) => {
         },
       })
       .then((res) => {
-        console.log("update chat now");
-        console.log(res.data.data);
         setGroupInfo(res.data.data);
       })
       .catch((err) => {

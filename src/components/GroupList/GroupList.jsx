@@ -8,8 +8,13 @@ import { storage } from "../../utils/storage";
 const GroupList = ({ socket }) => {
   const [groupList, setGroupList] = useState([]);
   const currentUserId = getUserIdFromToken();
-  const { setIsChatting, setIsChatGroup, groupInfo, setGroupInfo } =
-    useChatContext();
+  const {
+    setIsChatting,
+    setIsChatGroup,
+    groupInfo,
+    setGroupInfo,
+    setIsLoadingChat,
+  } = useChatContext();
   const getAllGroupListener = (groups) => {
     if (groupInfo) {
       for (const group of groups) {
@@ -34,6 +39,9 @@ const GroupList = ({ socket }) => {
       return;
     }
 
+    // setLoading when begin to fetch the data
+    setIsLoadingChat(true);
+
     await axios
       .get(`${process.env.REACT_APP_API_URL}/groups/${groupData._id}`, {
         headers: {
@@ -45,6 +53,8 @@ const GroupList = ({ socket }) => {
         setIsChatGroup(true);
         const group = await res.data.data;
         setGroupInfo(group);
+        // finish fetch the data, set loading to false
+        setIsLoadingChat(false);
 
         // socket.emit("updateChatGroup", groupId);
       })

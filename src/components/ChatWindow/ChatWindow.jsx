@@ -5,7 +5,8 @@ import axios from "axios";
 import { storage } from "../../utils/storage";
 
 const ChatWindow = ({ socket }) => {
-  const { isChatting, isChatGroup, groupInfo, setGroupInfo } = useChatContext();
+  const { isChatting, isChatGroup, groupInfo, setGroupInfo, isLoadingChat } =
+    useChatContext();
 
   const updateChatGroupListener = async (groupId) => {
     if (!isChatting || !isChatGroup || groupInfo._id !== groupId) {
@@ -32,8 +33,11 @@ const ChatWindow = ({ socket }) => {
     };
   }, [isChatting, isChatGroup, groupInfo]);
 
-  // chat group
+  // loading (fetching group message)
+  if (isLoadingChat) return <div> loading . . .</div>;
+
   if (isChatting && isChatGroup)
+    // chat group
     return (
       <>
         <div> CHATTING NOW! / this is groupId : {groupInfo._id}</div>

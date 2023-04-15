@@ -2,16 +2,22 @@ import { useEffect, useState } from "react";
 import "./GroupList.css";
 import { getUserIdFromToken } from "../../utils/auth";
 import { useChatContext } from "../../context/ChatContext";
+import axios from "axios";
+import { storage } from "../../utils/storage";
 
 const GroupList = ({ socket }) => {
   const [groupList, setGroupList] = useState([]);
   const currentUserId = getUserIdFromToken();
-  const { setIsChatting, setIsChatGroup, groupInfo, setGroupInfo } =
-    useChatContext();
+  const {
+    setIsChatting,
+    setIsChatGroup,
+    groupInfo,
+    setGroupInfo,
+    setIsLoadingChat,
+  } = useChatContext();
   const getAllGroupListener = (groups) => {
     if (groupInfo) {
       for (const group of groups) {
-
         // bug here
         if (String(group.id) === String(groupInfo.id)) {
           setGroupInfo(group);
@@ -26,15 +32,35 @@ const GroupList = ({ socket }) => {
     setGroupList(groups);
   };
 
-  const onClickHandle = (groupData) => {
-    if (groupData.users.includes(currentUserId)) {
-      setIsChatting(true);
-      setIsChatGroup(true);
-      setGroupInfo(groupData);
-      console.log(groupData);
-    } else {
+  const onClickHandle = async (groupData) => {
+    // if user not in group, can't see group chat
+    if (!groupData.users.includes(currentUserId)) {
       alert("Please join this group first before chatting");
+      return;
     }
+
+    // setLoading when begin to fetch the data
+    setIsLoadingChat(true);
+
+    await axios
+      .get(`${process.env.REACT_APP_API_URL}/groups/${groupData._id}`, {
+        headers: {
+          Authorization: `Bearer ${storage.getAccessToken()}`,
+        },
+      })
+      .then(async (res) => {
+        setIsChatting(true);
+        setIsChatGroup(true);
+        const group = await res.data.data;
+        setGroupInfo(group);
+        // finish fetch the data, set loading to false
+        setIsLoadingChat(false);
+
+        // socket.emit("updateChatGroup", groupId);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   };
 
   useEffect(() => {

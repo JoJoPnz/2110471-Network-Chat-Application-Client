@@ -10,6 +10,7 @@ const ChatProvider = ({ children }) => {
   const [isChatting, setIsChatting] = useState(false);
   const [isChatGroup, setIsChatGroup] = useState(false);
   const [groupInfo, setGroupInfo] = useState({});
+  const [isLoadingChat, setIsLoadingChat] = useState(false);
 
   return (
     <ChatContext.Provider
@@ -20,6 +21,8 @@ const ChatProvider = ({ children }) => {
         setIsChatGroup,
         groupInfo,
         setGroupInfo,
+        isLoadingChat,
+        setIsLoadingChat,
       }}
     >
       {children}

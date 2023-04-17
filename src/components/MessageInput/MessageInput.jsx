@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./MessageInput.css";
 import { useChatContext } from "../../context/ChatContext";
 import axios from "axios";
@@ -7,10 +7,15 @@ import { storage } from "../../utils/storage";
 const MessageInput = ({ socket, groupId }) => {
   const [messageInput, setMessageInput] = useState("");
   const { isChatGroup } = useChatContext();
+  const buttonRef = useRef(null);
 
   const submitForm = async (e) => {
+    // prevent multiple click
+    buttonRef.current.disabled = true;
+
     e.preventDefault();
     if (!messageInput) {
+      buttonRef.current.disabled = false;
       alert("Message can't be empty string");
       return;
     }
@@ -38,6 +43,9 @@ const MessageInput = ({ socket, groupId }) => {
     } else {
     }
     setMessageInput("");
+
+    // prevent multiple click => set button enable after sent message
+    buttonRef.current.disabled = false;
   };
 
   useEffect(() => {
@@ -55,8 +63,8 @@ const MessageInput = ({ socket, groupId }) => {
           setMessageInput(e.currentTarget.value);
         }}
       />
-      <button type="submit" className="">
-        set
+      <button type="submit" className="" ref={buttonRef}>
+        send message
       </button>
     </form>
   );

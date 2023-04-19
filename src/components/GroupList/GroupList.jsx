@@ -18,7 +18,6 @@ const GroupList = ({ socket }) => {
   const getAllGroupListener = (groups) => {
     if (groupInfo) {
       for (const group of groups) {
-        // bug here
         if (String(group.id) === String(groupInfo.id)) {
           setGroupInfo(group);
           // console.log(group);
@@ -33,8 +32,11 @@ const GroupList = ({ socket }) => {
   };
 
   const onClickHandle = async (groupData) => {
+
+    const isUserInGroup = groupData.users.includes(currentUserId);
+
     // if user not in group, can't see group chat
-    if (!groupData.users.includes(currentUserId)) {
+    if (!isUserInGroup) {
       alert("Please join this group first before chatting");
       return;
     }
@@ -74,11 +76,59 @@ const GroupList = ({ socket }) => {
     return groupList.length;
   };
 
+  const DoesUserInGroup = (groupData, userId) => {
+    return groupData.users.includes(userId);
+  };
+
+  const handleJoinGroup = async (groupId) => {
+    await axios
+      .post(`${process.env.REACT_APP_API_URL}/groups/join`, {groupId}, {
+        headers: {
+          Authorization: `Bearer ${storage.getAccessToken()}`,
+        },
+      })
+      .then(async (res) => {
+        alert('Joined group successfully');
+        setIsChatting(false);
+        setIsChatGroup(false);
+        setGroupInfo({});
+        // finish fetch the data, set loading to false
+        setIsLoadingChat(false);
+        socket.emit("getAllGroup");
+        socket.emit("updateChatGroup", groupId);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  }; 
+
+  const handleLeaveGroup = async (groupId) => {
+    await axios
+      .post(`${process.env.REACT_APP_API_URL}/groups/leave`, {groupId}, {
+        headers: {
+          Authorization: `Bearer ${storage.getAccessToken()}`,
+        },
+      })
+      .then(async (res) => {
+        alert('Leaved group successfully');
+        setIsChatting(false);
+        setIsChatGroup(false);
+        setGroupInfo({});
+        // finish fetch the data, set loading to false
+        setIsLoadingChat(false);
+        socket.emit("getAllGroup");
+        socket.emit("updateChatGroup", groupId);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
+
   return (
     <div className="group-list-container">
       <div className="group-list-header">Group List</div>
       <div className="group-list-total">
-        total group :{" "}
+        Total group :{" "}
         <span className="user-count">{countAllGroup(groupList)}</span>
       </div>
       {groupList.map((e, index) => (
@@ -86,15 +136,22 @@ const GroupList = ({ socket }) => {
           className="group-list-item"
           key={e._id}
           onClick={() => onClickHandle(e)}
-        >
-          <span>{e.name} :</span> {e.users}
+          >
+          <span >{e.name}</span>
+          <div>
+
+            {DoesUserInGroup(e, currentUserId) ? (
+              <button className="leave-button" onClick={(event) => { event.stopPropagation(); handleLeaveGroup(e._id) }}>
+                  Leave
+                </button>
+              ) : (
+                <button className="join-button" onClick={(event) => { event.stopPropagation(); handleJoinGroup(e._id) }}>
+                  Join
+                </button>
+              )}
+          </div>
+      
         </div>
-        // {/*----------------- Implement here -----------------*/ }
-        // {/* leave group if user already joined */}
-        // {/* <button>leave group</button> */}
-        // {/* join group if user has never been in group*/}
-        // {/* <button>join group</button> */}
-        // {/*----------------- Implement here -----------------*/}
       ))}
     </div>
   );

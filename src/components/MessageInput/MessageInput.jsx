@@ -3,6 +3,8 @@ import "./MessageInput.css";
 import { useChatContext } from "../../context/ChatContext";
 import axios from "axios";
 import { storage } from "../../utils/storage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FaPaperPlane } from "react-icons/fa";
 
 const MessageInput = ({ socket, groupId }) => {
   const [messageInput, setMessageInput] = useState("");
@@ -53,18 +55,24 @@ const MessageInput = ({ socket, groupId }) => {
   }, []);
 
   return (
-    <form onSubmit={submitForm}>
+    <form className="form-inline align-items-center" onSubmit={submitForm}>
       <input
         className=""
         autoFocus
         value={messageInput}
         placeholder="type message"
+        style={{ height: "38px" }}
         onChange={(e) => {
           setMessageInput(e.currentTarget.value);
         }}
       />
-      <button type="submit" className="" ref={buttonRef}>
-        send message
+      <button
+        type="submit"
+        className="send-button"
+        ref={buttonRef}
+        style={{ marginLeft: "10px" }}
+      >
+        send message <FaPaperPlane />
       </button>
     </form>
   );

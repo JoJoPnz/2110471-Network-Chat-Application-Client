@@ -109,7 +109,11 @@ const ChatWindow = ({ socket }) => {
             }
           }
         })}
-        <MessageInput socket={socket} groupId={groupInfo._id} />
+        <div className="d-flex justify-content-end"><MessageInput
+          socket={socket}
+          groupId={groupInfo._id}
+        /></div>
+        
       </div>
     );
   // direct message

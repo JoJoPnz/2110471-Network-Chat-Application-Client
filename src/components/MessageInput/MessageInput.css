@@ -1,0 +1,26 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.send-input {
+    padding: 30px;
+  }
+
+.send-button {
+    background-color: yellow;
+    border-radius: 5px;
+    color: black;
+    padding: 6px 20px;
+    border: none;
+    box-sizing: border-box;
+    height: 38px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .send-button:hover {
+    background-color: rgb(245, 245, 169);
+    cursor: pointer;
+  }
+
+  input::placeholder {
+  padding: 10px;
+}

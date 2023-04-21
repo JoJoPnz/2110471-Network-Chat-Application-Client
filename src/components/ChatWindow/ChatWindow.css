@@ -1,2 +1,45 @@
-.chat-window-container {
+
+.groupname{
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
 }
+
+.chat-message-system {
+  background-color: #f8f8f87c;
+  color: #474545;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.system-message-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.system-message-equal-signs {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+}
+
+.system-message-equal-signs:first-of-type {
+  left: 0;
+}
+
+.system-message-equal-signs:last-of-type {
+  right: 0;
+}
+
+
+
+
+
+

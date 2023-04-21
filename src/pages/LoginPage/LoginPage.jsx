@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { storage } from "../../utils/storage";
+import { checkToken } from "../../utils/auth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +28,12 @@ const LoginPage = () => {
         alert("username or password is incorrect");
       });
   };
+
+  useEffect(() => {
+    if (checkToken()) {
+      navigate("/chat");
+    }
+  }, []);
 
   return (
     <form className="form-login" onSubmit={handleSubmit}>

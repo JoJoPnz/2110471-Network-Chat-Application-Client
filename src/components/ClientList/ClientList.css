@@ -24,14 +24,42 @@
 .clientlist-row {
   display: flex;
   align-items: center;
+  cursor: pointer;
+
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
 }
 
+.clientlist-row:hover {
+  background-color: #f2f2f2;
+}
 .clientlist-username {
   flex: 1;
   margin-top: 5px;
 }
 
-.chat-button {
+.clientlist-row2 {
+  display: flex;
+    align-items: center;  
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+/* .chat-button {
   margin-top: 5px;
   width: 80px;
   font-family: "Poppins", sans-serif;
@@ -46,12 +74,11 @@
   display: inline-block;
   transition-duration: 0.4s;
   cursor: pointer;
-}
+} */
 
-.chat-button:hover {
-  transition: 1s ease-in-out;
+/* .chat-button:hover {
   background: #4f95da;
-}
+} */
 
 .icon-online {
   color: green;
@@ -60,7 +87,7 @@
 }
 
 .icon-offline {
-  color: gray;
+  color: rgb(180, 177, 177);
   margin-top: 5px;
   margin-right: 5px;
 }
@@ -87,4 +114,8 @@
   border-radius: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.user-offline{
+  color: rgb(122, 122, 122);
 }

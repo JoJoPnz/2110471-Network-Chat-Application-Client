@@ -3,7 +3,8 @@ import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { storage } from "../../utils/storage";
-
+import { AiFillHome } from "react-icons/ai";
+// import { BiLogIn } from "react-icons/bi";
 function Navbar() {
   const navigate = useNavigate();
 
@@ -16,7 +17,9 @@ function Navbar() {
 
   return (
     <div className="navbar-container">
-      <a href="/chat">Home</a>
+      <a href="/chat">
+        <AiFillHome style={{ marginRight: "5px", marginBottom: "3px" }} /> Home
+      </a>
       {/* we love mobiew */}
       <a href="/login">Login</a>
       <a href="/register">Register</a>

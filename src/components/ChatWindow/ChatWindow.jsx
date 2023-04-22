@@ -41,14 +41,14 @@ const ChatWindow = ({ socket }) => {
         alert(err.response.data.message);
       });
 
-       const systemMessages = document.querySelectorAll(".system-message");
-       systemMessages.forEach((message) => {
-         message.style.backgroundColor = "#f7f7f7";
-         message.style.fontSize = "14px";
-         message.style.padding = "10px";
-         message.style.margin = "10px auto";
-         message.style.maxWidth = "80%";
-       });
+    const systemMessages = document.querySelectorAll(".system-message");
+    systemMessages.forEach((message) => {
+      message.style.backgroundColor = "#f7f7f7";
+      message.style.fontSize = "14px";
+      message.style.padding = "10px";
+      message.style.margin = "10px auto";
+      message.style.maxWidth = "80%";
+    });
   };
 
   useEffect(() => {
@@ -87,8 +87,8 @@ const ChatWindow = ({ socket }) => {
             if (message.sender._id == userID) {
               return (
                 <div className="d-flex justify-content-end" key={message._id}>
-                  <div className="bg-primary text-white p-2 rounded mb-2">
-                    <p className="m-0">{message.text}</p>
+                  <div className="bg-primary text-white p-2 rounded mb-2 myChatContainer">
+                    <p className="m-0 myMessage">{message.text}</p>
                   </div>
                 </div>
               );
@@ -97,11 +97,15 @@ const ChatWindow = ({ socket }) => {
                 <div key={message._id}>
                   {/* <p>{message.senderId}</p> */}
                   <div
-                    className="bg-primary text-white p-2 rounded mb-2 d-inline-block"
+                    className="bg-primary text-white p-2 rounded mb-2 d-inline-block chatOtherContainer"
                     style={{ maxWidth: "80%" }}
                   >
-                    <p className="m-0">
-                      {message.sender.username} : {message.text}
+                    <p className="m-0 otherMessage">
+                      <span className="otherSent">
+                        {" "}
+                        {message.sender.username} :{" "}
+                      </span>
+                      {message.text}
                     </p>
                   </div>
                 </div>
@@ -109,11 +113,9 @@ const ChatWindow = ({ socket }) => {
             }
           }
         })}
-        <div className="d-flex justify-content-end"><MessageInput
-          socket={socket}
-          groupId={groupInfo._id}
-        /></div>
-        
+        <div className="d-flex justify-content-end">
+          <MessageInput socket={socket} groupId={groupInfo._id} />
+        </div>
       </div>
     );
   // direct message

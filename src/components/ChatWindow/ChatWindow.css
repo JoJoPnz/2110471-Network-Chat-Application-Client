@@ -1,10 +1,18 @@
 
-.groupname{
+.groupname {
+  position: sticky;
+  top: 0;
   text-align: center;
   font-size: 40px;
   font-weight: bold;
+  background-color: rgb(75, 190, 75);
+  color: white;
+  font-weight: 800;
+  width: 100%;
+  z-index: 999;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
 }
-
 .chat-message-system {
   background-color: #f8f8f87c;
   color: #474545;
@@ -13,7 +21,6 @@
   padding: 5px 10px;
   margin: 5px;
   border-radius: 5px;
-  font-size: 12px;
 }
 
 .system-message-wrapper {
@@ -38,8 +45,23 @@
   right: 0;
 }
 
+.otherMessage{
+  color:blue
+}
 
+.chatOtherContainer{
+  background-color: white !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: 15px;
+  margin-top: 5px;
+}
 
+.otherSent{
+  font-weight: 800;
+}
 
-
-
+.myChatContainer{
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to left, #7367bc, #1e90ff);
+}

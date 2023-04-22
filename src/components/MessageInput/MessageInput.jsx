@@ -57,7 +57,7 @@ const MessageInput = ({ socket, groupId }) => {
   return (
     <form className="form-inline align-items-center" onSubmit={submitForm}>
       <input
-        className=""
+        className="chat-message-send"
         autoFocus
         value={messageInput}
         placeholder="type message"
@@ -70,9 +70,9 @@ const MessageInput = ({ socket, groupId }) => {
         type="submit"
         className="send-button"
         ref={buttonRef}
-        style={{ marginLeft: "10px" }}
+        style={{ marginLeft: "15px" }}
       >
-        send message <FaPaperPlane />
+        send message <FaPaperPlane style={{ marginLeft: "5px" }} />
       </button>
     </form>
   );

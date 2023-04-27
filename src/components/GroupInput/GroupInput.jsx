@@ -41,18 +41,20 @@ const GroupInput = ({ socket }) => {
     <form onSubmit={submitForm} className="form-submitGroupName">
       <div className="inputCreateGroup-container">
         <div className="createGroup-text">Create Group : </div>
-        <input
-          className="input-groupName"
-          autoFocus
-          value={groupNameInput}
-          placeholder="Fill in group name"
-          onChange={(e) => {
-            setGroupNameInput(e.currentTarget.value);
-          }}
-        />
-        <button type="submit" className="send-button-groupName">
-          create
-        </button>
+        <div className="create-group-form">
+          <input
+            className="input-groupName"
+            autoFocus
+            value={groupNameInput}
+            placeholder="Fill in group name"
+            onChange={(e) => {
+              setGroupNameInput(e.currentTarget.value);
+            }}
+          />
+          <button type="submit" className="send-button-groupName">
+            create
+          </button>
+        </div>
       </div>
     </form>
   );

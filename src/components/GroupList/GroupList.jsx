@@ -32,7 +32,6 @@ const GroupList = ({ socket }) => {
   };
 
   const onClickHandle = async (groupData) => {
-
     const isUserInGroup = groupData.users.includes(currentUserId);
 
     // if user not in group, can't see group chat
@@ -82,13 +81,17 @@ const GroupList = ({ socket }) => {
 
   const handleJoinGroup = async (groupId) => {
     await axios
-      .post(`${process.env.REACT_APP_API_URL}/groups/join`, {groupId}, {
-        headers: {
-          Authorization: `Bearer ${storage.getAccessToken()}`,
-        },
-      })
+      .post(
+        `${process.env.REACT_APP_API_URL}/groups/join`,
+        { groupId },
+        {
+          headers: {
+            Authorization: `Bearer ${storage.getAccessToken()}`,
+          },
+        }
+      )
       .then(async (res) => {
-        alert('Joined group successfully');
+        alert("Joined group successfully");
         setIsChatting(false);
         setIsChatGroup(false);
         setGroupInfo({});
@@ -100,17 +103,21 @@ const GroupList = ({ socket }) => {
       .catch((err) => {
         alert(err.response.data.message);
       });
-  }; 
+  };
 
   const handleLeaveGroup = async (groupId) => {
     await axios
-      .post(`${process.env.REACT_APP_API_URL}/groups/leave`, {groupId}, {
-        headers: {
-          Authorization: `Bearer ${storage.getAccessToken()}`,
-        },
-      })
+      .post(
+        `${process.env.REACT_APP_API_URL}/groups/leave`,
+        { groupId },
+        {
+          headers: {
+            Authorization: `Bearer ${storage.getAccessToken()}`,
+          },
+        }
+      )
       .then(async (res) => {
-        alert('Leaved group successfully');
+        alert("Leaved group successfully");
         setIsChatting(false);
         setIsChatGroup(false);
         setGroupInfo({});
@@ -131,28 +138,40 @@ const GroupList = ({ socket }) => {
         Total group :{" "}
         <span className="user-count">{countAllGroup(groupList)}</span>
       </div>
-      {groupList.map((e, index) => (
-        <div
-          className="group-list-item"
-          key={e._id}
-          onClick={() => onClickHandle(e)}
+      <div className="scroll-group-list">
+        {groupList.map((e, index) => (
+          <div
+            className="group-list-item"
+            key={e._id}
+            onClick={() => onClickHandle(e)}
           >
-          <span >{e.name}</span>
-          <div>
-
-            {DoesUserInGroup(e, currentUserId) ? (
-              <button className="leave-button" onClick={(event) => { event.stopPropagation(); handleLeaveGroup(e._id) }}>
+            <span>{e.name}</span>
+            <div>
+              {DoesUserInGroup(e, currentUserId) ? (
+                <button
+                  className="leave-button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleLeaveGroup(e._id);
+                  }}
+                >
                   Leave
                 </button>
               ) : (
-                <button className="join-button" onClick={(event) => { event.stopPropagation(); handleJoinGroup(e._id) }}>
+                <button
+                  className="join-button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleJoinGroup(e._id);
+                  }}
+                >
                   Join
                 </button>
               )}
+            </div>
           </div>
-      
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

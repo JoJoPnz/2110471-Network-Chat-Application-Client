@@ -32,8 +32,7 @@ const ClientList = ({ socket }) => {
   const countAllOnlineUser = (clientList) => {
     let count = 0;
     for (const user of clientList) {
-      if (user.status === "online")
-        count += 1;
+      if (user.status === "online") count += 1;
     }
     return count;
   };
@@ -64,7 +63,7 @@ const ClientList = ({ socket }) => {
         setIsLoadingChat(false);
         alert(err.response.data.message);
       });
-  }
+  };
 
   return (
     <>
@@ -74,27 +73,35 @@ const ClientList = ({ socket }) => {
           Total user online :{" "}
           <span className="user-count">{countAllOnlineUser(clientList)}</span>
         </div>
-        {clientList.map((e, index) => (
+        <div className="user-list">
+          {clientList.map((e, index) => (
             <div key={index}>
               <div
-                className={ (e.id === socket.id ? "clientlist-row2": "clientlist-row"  )}
+                className={
+                  e.id === socket.id ? "clientlist-row2" : "clientlist-row"
+                }
                 onClick={e.id !== socket.id ? () => loadDM(e) : undefined}
               >
                 <VscCircleFilled
-                  className={e.status === "online" ? "icon-online" : "icon-offline"}
+                  className={
+                    e.status === "online" ? "icon-online" : "icon-offline"
+                  }
                   style={{ width: "25px", height: "25px" }}
                 />
                 <div
                   className={
-                    "clientlist-username " + (e.status !== "online" ? "user-offline" : "")
+                    "clientlist-username " +
+                    (e.status !== "online" ? "user-offline" : "")
                   }
                 >
-                  {e.username ? e.username + (e.id === socket.id ? " (me)" : "") : ""}
+                  {e.username
+                    ? e.username + (e.id === socket.id ? " (me)" : "")
+                    : ""}
                 </div>
               </div>
             </div>
           ))}
-
+        </div>
       </div>
     </>
   );

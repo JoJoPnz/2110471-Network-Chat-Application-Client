@@ -43,6 +43,25 @@ const MessageInput = ({ socket, groupId }) => {
           alert(err.response.data.message);
         });
     } else {
+      await axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/dm/messages`,
+          {
+            receiverId: groupId, // used as userId
+            message: { type: "User", text: messageInput },
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${storage.getAccessToken()}`,
+            },
+          }
+        )
+        .then((res) => {
+          socket.emit("newDM", groupId);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
     }
     setMessageInput("");
 

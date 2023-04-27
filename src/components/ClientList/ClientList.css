@@ -1,3 +1,23 @@
+.user-list {
+  height: 250px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+/* For webkit-based browsers */
+.user-list-container::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scroll bar */
+}
+
+.user-list-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the background color of the track */
+}
+
+.user-list-container::-webkit-scrollbar-thumb {
+  background-color: #c3c0c0; /* Set the color of the thumb */
+  border-radius: 5px; /* Set the border radius of the thumb */
+}
+
 .clientlist-container {
   /* background-color: antiquewhite; */
   width: 300px;
@@ -6,8 +26,6 @@
   font-family: "Poppins", sans-serif;
   margin-left: 20px;
   margin-top: 30px;
-  /* height: 200px;
-  overflow-x: scroll; */
 }
 
 .clientlist-title {
@@ -47,16 +65,16 @@
 
 .clientlist-row2 {
   display: flex;
-    align-items: center;  
-    margin-bottom: 10px;
-    padding: 5px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
 }
 
 /* .chat-button {
@@ -108,7 +126,7 @@
   margin-left: 10px;
 }
 
-.line-clientlist{
+.line-clientlist {
   height: 3px;
   background-color: gray;
   border-radius: 20px;
@@ -116,6 +134,6 @@
   margin-bottom: 5px;
 }
 
-.user-offline{
+.user-offline {
   color: rgb(122, 122, 122);
 }

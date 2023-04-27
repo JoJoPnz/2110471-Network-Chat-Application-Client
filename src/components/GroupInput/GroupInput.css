@@ -1,46 +1,52 @@
-.form-submitGroupName{
-    font-family: "Poppins", sans-serif;
-    margin-top: 20px;
-    width: 300px;
-    display: flex;
+.form-submitGroupName {
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+  width: 300px;
+  display: flex;
 }
 
-.inputCreateGroup-container{
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
+.inputCreateGroup-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
 }
 
 .createGroup-text {
-    font-size: 18px;
-    font-weight:bolder;
-    margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 8px;
 }
 
 .input-groupName {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    width: 290px;
-    margin-bottom: 8px;
-        font-family: "Poppins", sans-serif;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 290px;
+  font-family: "Poppins", sans-serif;
 }
 
 .send-button-groupName {
-    background-color: rgb(105, 178, 202);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    align-self: flex-end;
+  background-color: rgb(105, 178, 202);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  margin-left: 20px;
+  /* display: flex;
+  align-self: flex-end; */
 }
 
 .send-button-groupName:hover {
-    background-color: blue;
+  background-color: blue;
+}
+
+.create-group-form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
